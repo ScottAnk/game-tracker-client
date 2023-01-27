@@ -5,7 +5,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -16,7 +16,7 @@ header {
   text-align: center;
 }
 
-#main-content {
+#main-page {
   display: grid;
   grid-template-columns: 20% 80%;
 }

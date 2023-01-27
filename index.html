@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css" />
-  <script type="module" src="scripts/app.js"></script>
-  <title>Game Collector</title>
-</head>
-<body>
-  <header>My Collection</header>
-  <div id="main-content">
-    <div id="actions">
-      <button id="create-game">New Game</button>
-      <button class="disabled" id="delete-game">Delete Game</button>
-      <button id="sign-out">Sign Out</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="scripts/app.js"></script>
+    <title>Game Collector</title>
+  </head>
+  <body>
+    <div class="hidden" id="message-container"></div>
+    <div id="login-page">
+      <h1>Welcome! Sign in to start building a game collection</h1>
+      <form id="credentials">
+        <input name="userName" placeholder="username" />
+        <input name="password" placeholder="password" type="password" />
+      </form>
+      <button id="sign-in">sign in</button>
+      <button id="sign-up">sign up</button>
     </div>
-    <div id="collection-contents"></div> 
-  </div>
-</body>
+    <div class="hidden" id="main-page">
+      <div id="actions">
+        <button id="create-game">New Game</button>
+        <button class="disabled" id="delete-game">Delete Game</button>
+        <button id="sign-out">Sign Out</button>
+      </div>
+      <div id="collection-contents"></div>
+    </div>
+  </body>
 </html>
