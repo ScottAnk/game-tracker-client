@@ -1,7 +1,11 @@
 * {
-  --main-color: #50C878;
-  --primary-accent: #7F639C;
-  --secondary-accent: #9C7F63;
+  --main-color: #50c878;
+  --primary-accent: #7f639c;
+  --secondary-accent: #9c7f63;
+}
+
+.hidden {
+  display: none;
 }
 
 body {
@@ -11,12 +15,13 @@ body {
 header {
   text-align: center;
 }
+
 #main-content {
   display: grid;
   grid-template-columns: 20% 80%;
 }
 
-#actions{
+#actions {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
