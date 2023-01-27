@@ -16,6 +16,8 @@ export const onSignInSuccess = () => {
 
 export const onIndexUserCollections = (collections) => {
   const games = collections[0].games
+
+  view.collectionPage.innerHTML = ''
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
     const div = document.createElement('div')
@@ -25,8 +27,19 @@ export const onIndexUserCollections = (collections) => {
     <p>Players: ${game.minPlayers} - ${game.maxPlayers}</p>
     <p>click to see more</p>
     `
-    view.collectionContents.appendChild(div)
+    view.collectionPage.appendChild(div)
   }
+}
+
+export const showCreateGameInterface = () => {
+  view.collectionPage.classList.add('hidden')
+  view.createGamePage.classList.remove('hidden')
+}
+
+export const onCreateGameSuccess = () => {
+  view.createGamePage.classList.add('hidden')
+  view.collectionPage.classList.remove('hidden')
+  view.createGameForm.reset()
 }
 
 export const showError = (error) => {

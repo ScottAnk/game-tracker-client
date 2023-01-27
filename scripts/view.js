@@ -1,12 +1,17 @@
 export default {
-  collectionContents: document.querySelector('#collection-contents'),
-  createGameButton: document.querySelector('#create-game'),
-  createGamePage: document.querySelector('#create-game-page'),
-  deleteGameButton: document.querySelector('#delete-game'),
-  mainPage: document.querySelector('#main-page'),
   loginPage: document.querySelector('#login-page'),
   signInButton: document.querySelector('#sign-in'),
   signUpButton: document.querySelector('#sign-up'),
   credentialsForm: document.querySelector('#credentials'),
+
+  mainPage: document.querySelector('#main-page'),
+  collectionPage: document.querySelector('#collection-page'),
+
+  createGamePage: document.querySelector('#create-game-page'),
+  createGameButton: document.querySelector('#create-game'),
+  createGameForm: document.querySelector('#create-game-form'),
+  submitNewGameButton: document.querySelector('#submit-new-game'),
+
+  deleteGameButton: document.querySelector('#delete-game'),
   messageContainer: document.querySelector('#message-container'),
 }

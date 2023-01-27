@@ -1,11 +1,12 @@
 import view from './view.js'
-import { indexUserGames, indexUserCollections, signUp, signIn } from './api.js'
+import { indexUserGames, indexUserCollections, signUp, signIn, createGame} from './api.js'
 import {
   onIndexUserCollections,
-  loadCreateGameInterface,
+  showCreateGameInterface,
   onSignUpSuccess,
   onSignInSuccess,
   showError,
+  onCreateGameSuccess,
 } from './ui.js'
 import cache from './cache.js'
 
@@ -46,9 +47,23 @@ view.signInButton.addEventListener('click', () => {
     .catch(console.error)
 })
 
-// TODO put this in the login flow
-
 view.createGameButton.addEventListener('click', (event) => {
   event.preventDefault()
-  loadCreateGameInterface()
+  showCreateGameInterface()
+})
+
+view.createGameForm.addEventListener('submit', (event) => {
+  event.preventDefault()
+  const gameDetails = {
+    title: view.createGameForm.title.value,
+    minPlayers: view.createGameForm.minPlayers.value,
+    maxPlayers: view.createGameForm.maxPlayers.value,
+    description: view.createGameForm.description.value,
+  }
+  createGame(gameDetails)
+  .then(onCreateGameSuccess)
+  .then(indexUserCollections)
+  .then((res) => res.json())
+  .then((POJO) => onIndexUserCollections(POJO.collections))
+  .catch(showError)
 })

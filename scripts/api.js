@@ -8,8 +8,23 @@ export const indexUserGames = (collectionId) => {
     `${SERVER_URL}/games/`, // ?collection=${collectionId}`,
     {
       headers: {
-        Authorization: `Bearer ${USER_TOKEN}`,
+        Authorization: `Bearer ${cache.token}`,
       },
+    }
+  )
+}
+
+export const createGame = (gameDetails) => {
+  return fetch(
+    `${SERVER_URL}/games/`, // ?collection=${collectionId}`,
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${cache.token}`,
+      },
+      body: JSON.stringify({ game: gameDetails }),
     }
   )
 }

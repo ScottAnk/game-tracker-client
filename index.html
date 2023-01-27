@@ -10,6 +10,7 @@
   </head>
   <body>
     <div class="hidden" id="message-container"></div>
+
     <div id="login-page">
       <h1>Welcome! Sign in to start building a game collection</h1>
       <form id="credentials">
@@ -19,13 +20,27 @@
       <button id="sign-in">sign in</button>
       <button id="sign-up">sign up</button>
     </div>
+
     <div class="hidden" id="main-page">
       <div id="actions">
         <button id="create-game">New Game</button>
         <button class="disabled" id="delete-game">Delete Game</button>
         <button id="sign-out">Sign Out</button>
       </div>
-      <div id="collection-contents"></div>
+
+      <div id="collection-page"></div>
+
+      <div class="hidden" id="create-game-page">
+        <h3>Enter Game Details</h3>
+        <form id="create-game-form">
+          <input name="title" placeholder="title" />
+          <input name="minPlayers" placeholder="minimum players" />
+          <input name="maxPlayers" placeholder="maximum players" />
+          <label for="description">description</label>
+          <textarea id="description" name="description"></textarea>
+          <button type="submit" id="submit-new-game">Create Game</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
