@@ -14,6 +14,7 @@ import {
   showCreateGameInterface,
   onSignUpSuccess,
   onSignInSuccess,
+  showLoginPage,
   showError,
   onCreateGameSuccess,
   showUpdateGamePage,
@@ -56,6 +57,11 @@ view.signInButton.addEventListener('click', () => {
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
     .catch(console.error)
+})
+
+view.signOutButton.addEventListener('click', () => {
+  cache.token = ''
+  showLoginPage()
 })
 
 view.createGameButton.addEventListener('click', (event) => {

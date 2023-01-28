@@ -5,6 +5,7 @@ export default {
   credentialsForm: document.querySelector('#credentials'),
 
   mainPage: document.querySelector('#main-page'),
+  signOutButton: document.querySelector('#sign-out'),
   collectionPage: document.querySelector('#collection-page'),
 
   createGamePage: document.querySelector('#create-game-page'),

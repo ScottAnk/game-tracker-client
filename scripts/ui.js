@@ -19,6 +19,13 @@ export const onSignInSuccess = () => {
   view.loginPage.classList.add('hidden')
   view.mainPage.classList.remove('hidden')
   view.messageContainer.classList.add('hidden')
+
+  view.credentialsForm.reset()
+}
+
+export const showLoginPage = () => {
+  view.mainPage.classList.add('hidden')
+  view.loginPage.classList.remove('hidden')
 }
 
 export const onIndexUserCollections = (collections) => {
