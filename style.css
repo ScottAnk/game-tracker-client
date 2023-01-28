@@ -1,0 +1,38 @@
+* {
+  --main-color: #50c878;
+  --primary-accent: #7f639c;
+  --secondary-accent: #9c7f63;
+}
+
+.hidden {
+  display: none !important;
+}
+
+body {
+  background-color: var(--main-color);
+}
+
+header {
+  text-align: center;
+}
+
+#main-page {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.game-listing {
+  outline: solid var(--secondary-accent) 2px;
+  cursor: pointer;
+}
+
+#actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+button {
+  background-color: var(--primary-accent);
+  margin: 0.3em;
+}
