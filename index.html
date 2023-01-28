@@ -24,7 +24,7 @@
     <div class="hidden" id="main-page">
       <div id="actions">
         <button id="create-game">New Game</button>
-        <button class="disabled" id="delete-game">Delete Game</button>
+        <button class="hidden" id="delete-game">Delete Game</button>
         <button id="sign-out">Sign Out</button>
       </div>
 
@@ -37,8 +37,20 @@
           <input name="minPlayers" placeholder="minimum players" />
           <input name="maxPlayers" placeholder="maximum players" />
           <label for="description">description</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea name="description"></textarea>
           <button type="submit" id="submit-new-game">Create Game</button>
+        </form>
+      </div>
+
+      <div class="hidden" id="game-details-page">
+        <h3>Game Details</h3>
+        <form id="update-game-form">
+          <input name="title" placeholder="title" />
+          <input name="minPlayers" placeholder="minimum players" />
+          <input name="maxPlayers" placeholder="maximum players" />
+          <label for="description">description</label>
+          <textarea name="description"></textarea>
+          <button type="submit" id="submit-update-game">Update Game</button>
         </form>
       </div>
     </div>

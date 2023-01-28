@@ -21,6 +21,11 @@ header {
   grid-template-columns: 20% 80%;
 }
 
+.game-listing {
+  outline: solid var(--secondary-accent) 2px;
+  cursor: pointer;
+}
+
 #actions {
   display: flex;
   flex-direction: column;
@@ -28,6 +33,6 @@ header {
 }
 
 button {
-  background-color: var(--secondary-accent);
+  background-color: var(--primary-accent);
   margin: 0.3em;
 }

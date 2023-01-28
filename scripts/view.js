@@ -12,6 +12,9 @@ export default {
   createGameForm: document.querySelector('#create-game-form'),
   submitNewGameButton: document.querySelector('#submit-new-game'),
 
+  updateGamePage: document.querySelector('#game-details-page'),
+  updateGameForm: document.querySelector('#update-game-form'),
+
   deleteGameButton: document.querySelector('#delete-game'),
   messageContainer: document.querySelector('#message-container'),
 }

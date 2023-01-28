@@ -1,5 +1,14 @@
 import view from './view.js'
-import { indexUserGames, indexUserCollections, signUp, signIn, createGame} from './api.js'
+import {
+  indexUserGames,
+  indexUserCollections,
+  signUp,
+  signIn,
+  createGame,
+  showGame,
+  updateGame,
+  deleteGame,
+} from './api.js'
 import {
   onIndexUserCollections,
   showCreateGameInterface,
@@ -7,6 +16,8 @@ import {
   onSignInSuccess,
   showError,
   onCreateGameSuccess,
+  showUpdateGamePage,
+  hideUpdateGamePage,
 } from './ui.js'
 import cache from './cache.js'
 
@@ -61,9 +72,50 @@ view.createGameForm.addEventListener('submit', (event) => {
     description: view.createGameForm.description.value,
   }
   createGame(gameDetails)
-  .then(onCreateGameSuccess)
-  .then(indexUserCollections)
-  .then((res) => res.json())
-  .then((POJO) => onIndexUserCollections(POJO.collections))
-  .catch(showError)
+    .then(onCreateGameSuccess)
+    .then(indexUserCollections)
+    .then((res) => res.json())
+    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .catch(showError)
+})
+
+view.collectionPage.addEventListener('click', (event) => {
+  const gameListingDiv = event.target.matches('.game-listing')
+    ? event.target
+    : event.target.parentElement
+  if (!gameListingDiv.dataset.id) {
+    return
+  }
+
+  showGame(gameListingDiv.dataset.id)
+    .then((res) => res.json())
+    .then((POJO) => showUpdateGamePage(POJO.game))
+    .catch(showError)
+})
+
+view.updateGameForm.addEventListener('submit', (event) => {
+  event.preventDefault()
+
+  const gameDetails = {
+    title: view.updateGameForm.title.value,
+    minPlayers: view.updateGameForm.minPlayers.value,
+    maxPlayers: view.updateGameForm.maxPlayers.value,
+    description: view.updateGameForm.description.value,
+  }
+  updateGame(view.updateGameForm.dataset.id, gameDetails)
+    .then((res) => res.json())
+    .then(hideUpdateGamePage)
+    .then(indexUserCollections)
+    .then((res) => res.json())
+    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .catch(showError)
+})
+
+view.deleteGameButton.addEventListener('click', (event) => {
+  deleteGame(view.deleteGameButton.dataset.id)
+    .then(hideUpdateGamePage)
+    .then(indexUserCollections)
+    .then((res) => res.json())
+    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .catch(showError)
 })
