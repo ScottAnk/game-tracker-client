@@ -20,6 +20,8 @@ import {
   onCreateGameSuccess,
   showUpdateGamePage,
   hideUpdateGamePage,
+  startDeleteConfirmation,
+  clearDeleteConfirmation,
 } from './ui.js'
 import cache from './cache.js'
 
@@ -61,6 +63,7 @@ view.signInButton.addEventListener('click', () => {
 })
 
 view.signOutButton.addEventListener('click', () => {
+  // TODO BUT signing out from any page results in returning to it when signing in
   cache.token = ''
   showLoginPage()
 })
@@ -126,11 +129,20 @@ view.updateGameForm.addEventListener('submit', (event) => {
     .catch(showError)
 })
 
-view.deleteGameButton.addEventListener('click', (event) => {
+const triggerDeletion = () => {
   deleteGame(view.deleteGameButton.dataset.id)
     .then(hideUpdateGamePage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
     .catch(showError)
+}
+view.deleteGameButton.addEventListener('click', (event) => {
+  if (cache.deleteEnabled) {
+    clearDeleteConfirmation()
+    triggerDeletion()
+  } else {
+    cache.deleteEnabled = true
+    startDeleteConfirmation()
+  }
 })
