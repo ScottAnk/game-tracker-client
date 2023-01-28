@@ -12,6 +12,7 @@ import {
 import {
   onIndexUserCollections,
   showCreateGameInterface,
+  hideCreateGamePage,
   onSignUpSuccess,
   onSignInSuccess,
   showLoginPage,
@@ -62,6 +63,14 @@ view.signInButton.addEventListener('click', () => {
 view.signOutButton.addEventListener('click', () => {
   cache.token = ''
   showLoginPage()
+})
+
+view.closeCreateGameButton.addEventListener('click', () => {
+  hideCreateGamePage()
+})
+
+view.closeUpdateGameButton.addEventListener('click', () => {
+  hideUpdateGamePage()
 })
 
 view.createGameButton.addEventListener('click', (event) => {

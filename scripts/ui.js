@@ -52,9 +52,13 @@ export const showCreateGameInterface = () => {
 }
 
 export const onCreateGameSuccess = () => {
+  hideCreateGamePage()
+  view.createGameForm.reset()
+}
+
+export const hideCreateGamePage = () => {
   view.createGamePage.classList.add('hidden')
   view.collectionPage.classList.remove('hidden')
-  view.createGameForm.reset()
 }
 
 export const showUpdateGamePage = (gameData) => {

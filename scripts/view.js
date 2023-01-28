@@ -12,9 +12,11 @@ export default {
   createGameButton: document.querySelector('#create-game'),
   createGameForm: document.querySelector('#create-game-form'),
   submitNewGameButton: document.querySelector('#submit-new-game'),
+  closeCreateGameButton: document.querySelector('#create-game-page .fa-xmark'),
 
   updateGamePage: document.querySelector('#game-details-page'),
   updateGameForm: document.querySelector('#update-game-form'),
+  closeUpdateGameButton: document.querySelector('#game-details-page .fa-xmark'),
 
   deleteGameButton: document.querySelector('#delete-game'),
   messageContainer: document.querySelector('#message-container'),
