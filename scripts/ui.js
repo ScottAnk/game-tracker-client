@@ -1,4 +1,5 @@
 import view from './view.js'
+import cache from './cache.js'
 
 export const showError = (error) => {
   view.messageContainer.innerHTML = `
@@ -52,9 +53,13 @@ export const showCreateGameInterface = () => {
 }
 
 export const onCreateGameSuccess = () => {
+  hideCreateGamePage()
+  view.createGameForm.reset()
+}
+
+export const hideCreateGamePage = () => {
   view.createGamePage.classList.add('hidden')
   view.collectionPage.classList.remove('hidden')
-  view.createGameForm.reset()
 }
 
 export const showUpdateGamePage = (gameData) => {
@@ -79,4 +84,26 @@ export const hideUpdateGamePage = () => {
   view.updateGameForm.reset()
   view.updateGameForm.dataset.id = ''
   view.deleteGameButton.dataset.id = ''
+  clearDeleteConfirmation()
+}
+
+export const startDeleteConfirmation = () => {
+  const decrementCountdown = () => {
+    if (countdown === 0) {
+      clearDeleteConfirmation()
+      return
+    }
+    countdown--
+    view.deleteGameButton.innerText = `confirm...${countdown}`
+  }
+
+  let countdown = 3
+  view.deleteGameButton.innerText = `confirm...${countdown}`
+  cache.deleteIntervalId = setInterval(decrementCountdown, 1000)
+}
+
+export const clearDeleteConfirmation = () => {
+  clearInterval(cache.deleteIntervalId)
+  cache.deleteEnabled = false
+  view.deleteGameButton.innerText = 'Delete Game'
 }

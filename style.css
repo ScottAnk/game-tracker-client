@@ -36,3 +36,16 @@ button {
   background-color: var(--primary-accent);
   margin: 0.3em;
 }
+
+#create-game-page,
+#update-game-page {
+  position: relative;
+}
+
+.fa-xmark {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  padding: 0.5em;
+  cursor: pointer;
+}
