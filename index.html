@@ -52,21 +52,45 @@
           <i class="fa-solid fa-xmark" role="button"></i>
           <h3>Enter Game Details</h3>
           <form id="create-game-form">
-            <input class="form-control mb-2" name="title" placeholder="title" />
-            <input
-              class="form-control mb-2"
-              name="minPlayers"
-              type="number"
-              placeholder="minimum players"
-            />
-            <input
-              class="form-control mb-2"
-              name="maxPlayers"
-              type="number"
-              placeholder="maximum players"
-            />
-            <label for="description">description</label>
-            <textarea class="form-control mb-2" name="description"></textarea>
+            <div class="form-floating">
+              <input
+                class="form-control mb-2"
+                name="title"
+                placeholder="title"
+                id="create-title"
+              />
+              <label for="create-title">Title</label>
+            </div>
+            <div class="form-floating">
+              <input
+                class="form-control mb-2"
+                name="minPlayers"
+                type="number"
+                placeholder="minimum players"
+                id="create-min-players"
+              />
+              <label for="create-min-players">minimum players</label>
+            </div>
+            <div class="form-floating">
+              <input
+                class="form-control mb-2"
+                name="maxPlayers"
+                type="number"
+                placeholder="maximum players"
+                id="create-max-players"
+              />
+              <label for="create-max-players">maximum players</label>
+            </div>
+            <div class="form-floating">
+              <textarea
+                class="form-control mb-2"
+                name="description"
+                id="createDescription"
+                placeholder="description"
+                style="height: 8rem"
+              ></textarea>
+              <label for="createDescription">description</label>
+            </div>
             <button class="btn btn-primary" type="submit">Create Game</button>
           </form>
         </div>
@@ -110,6 +134,7 @@
                 class="form-control mb-2"
                 name="description"
                 id="updateDescription"
+                placeholder="description"
                 style="height: 8rem"
               ></textarea>
               <label for="updateDescription">description</label>
