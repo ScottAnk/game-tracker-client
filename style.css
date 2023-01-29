@@ -16,7 +16,7 @@ header {
   text-align: center;
 }
 
-#main-page {
+#main-container {
   display: grid;
   grid-template-columns: 20% 80%;
 }
@@ -37,7 +37,7 @@ button {
   margin: 0.3em;
 }
 
-#create-game-page,
+#game-details-page,
 #update-game-page {
   position: relative;
 }

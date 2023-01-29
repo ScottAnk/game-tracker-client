@@ -1,27 +1,27 @@
 import view from './view.js'
 import {
-  indexUserGames,
-  indexUserCollections,
   signUp,
   signIn,
+  indexCollectionGames,
+  indexUserCollections,
   createGame,
   showGame,
   updateGame,
   deleteGame,
 } from './api.js'
 import {
-  onIndexUserCollections,
-  showCreateGameInterface,
-  hideCreateGamePage,
+  showError,
   onSignUpSuccess,
   onSignInSuccess,
-  showLoginPage,
-  showError,
+  onIndexUserCollections,
+  showCreateGamePage,
+  hideCreateGamePage,
   onCreateGameSuccess,
-  showUpdateGamePage,
-  hideUpdateGamePage,
+  showGameDetailsPage,
+  hideGameDetailsPage,
   startDeleteConfirmation,
   clearDeleteConfirmation,
+  showLoginPage,
 } from './ui.js'
 import cache from './cache.js'
 
@@ -72,13 +72,13 @@ view.closeCreateGameButton.addEventListener('click', () => {
   hideCreateGamePage()
 })
 
-view.closeUpdateGameButton.addEventListener('click', () => {
-  hideUpdateGamePage()
+view.closeGameDetailsButton.addEventListener('click', () => {
+  hideGameDetailsPage()
 })
 
 view.createGameButton.addEventListener('click', (event) => {
   event.preventDefault()
-  showCreateGameInterface()
+  showCreateGamePage()
 })
 
 view.createGameForm.addEventListener('submit', (event) => {
@@ -107,7 +107,7 @@ view.collectionPage.addEventListener('click', (event) => {
 
   showGame(gameListingDiv.dataset.id)
     .then((res) => res.json())
-    .then((POJO) => showUpdateGamePage(POJO.game))
+    .then((POJO) => showGameDetailsPage(POJO.game))
     .catch(showError)
 })
 
@@ -122,7 +122,7 @@ view.updateGameForm.addEventListener('submit', (event) => {
   }
   updateGame(view.updateGameForm.dataset.id, gameDetails)
     .then((res) => res.json())
-    .then(hideUpdateGamePage)
+    .then(hideGameDetailsPage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
@@ -131,7 +131,7 @@ view.updateGameForm.addEventListener('submit', (event) => {
 
 const triggerDeletion = () => {
   deleteGame(view.deleteGameButton.dataset.id)
-    .then(hideUpdateGamePage)
+    .then(hideGameDetailsPage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))

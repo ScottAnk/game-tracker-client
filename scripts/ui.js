@@ -18,14 +18,14 @@ export const onSignUpSuccess = () => {
 
 export const onSignInSuccess = () => {
   view.loginPage.classList.add('hidden')
-  view.mainPage.classList.remove('hidden')
+  view.mainContainer.classList.remove('hidden')
   view.messageContainer.classList.add('hidden')
 
   view.credentialsForm.reset()
 }
 
 export const showLoginPage = () => {
-  view.mainPage.classList.add('hidden')
+  view.mainContainer.classList.add('hidden')
   view.loginPage.classList.remove('hidden')
 }
 
@@ -47,23 +47,24 @@ export const onIndexUserCollections = (collections) => {
   }
 }
 
-export const showCreateGameInterface = () => {
-  view.collectionPage.classList.add('hidden')
-  view.createGamePage.classList.remove('hidden')
-}
-
 export const onCreateGameSuccess = () => {
   hideCreateGamePage()
   view.createGameForm.reset()
 }
 
+export const showCreateGamePage = () => {
+  view.collectionPage.classList.add('hidden')
+  view.createGamePage.classList.remove('hidden')
+}
+
 export const hideCreateGamePage = () => {
   view.createGamePage.classList.add('hidden')
+  view.messageContainer.classList.add('hidden')
   view.collectionPage.classList.remove('hidden')
 }
 
-export const showUpdateGamePage = (gameData) => {
-  view.updateGamePage.classList.remove('hidden')
+export const showGameDetailsPage = (gameData) => {
+  view.gameDetailsPage.classList.remove('hidden')
   view.deleteGameButton.classList.remove('hidden')
   view.collectionPage.classList.add('hidden')
 
@@ -76,9 +77,10 @@ export const showUpdateGamePage = (gameData) => {
   view.deleteGameButton.dataset.id = gameData._id
 }
 
-export const hideUpdateGamePage = () => {
-  view.updateGamePage.classList.add('hidden')
+export const hideGameDetailsPage = () => {
+  view.gameDetailsPage.classList.add('hidden')
   view.deleteGameButton.classList.add('hidden')
+  view.messageContainer.classList.add('hidden')
   view.collectionPage.classList.remove('hidden')
 
   view.updateGameForm.reset()
