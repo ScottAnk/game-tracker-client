@@ -25,6 +25,8 @@ import {
 } from './ui.js'
 import cache from './cache.js'
 
+const devMode = true
+
 view.signUpButton.addEventListener('click', () => {
   const credentials = {
     userName: view.credentialsForm.userName.value,
@@ -145,3 +147,9 @@ view.deleteGameButton.addEventListener('click', (event) => {
     startDeleteConfirmation()
   }
 })
+
+if (devMode) {
+  view.credentialsForm.userName.value = 'C'
+  view.credentialsForm.password.value = 'C'
+  view.signInButton.click()
+}
