@@ -40,20 +40,9 @@ export const onIndexUserCollections = (collections) => {
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
     const div = document.createElement('div')
-    // div.classList.add('card')
-    // div.classList.add('text-center')
-    // div.dataset.id = game._id
-    // div.innerHTML = `
-    // <h3 class="card-title">${game.title}</h3>
-    // <div class="card-body">
-    // <p class="card-text">Players: ${game.minPlayers} - ${game.maxPlayers}</p>
-    // <p class="card-text">click to see more</p>
-    // </div>
-    // `
     div.classList.add('col')
-    div.dataset.id = game._id
     div.innerHTML = `
-    <div class="card text-center h-100">
+    <div class="card text-center h-100" role="button" data-id="${game._id}">
       <h3 class="card-title">${game.title}</h3>
       <div class="card-body">
         <p class="card-text">Players: ${game.minPlayers} - ${game.maxPlayers}</p>

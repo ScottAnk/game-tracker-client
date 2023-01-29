@@ -99,14 +99,18 @@ view.createGameForm.addEventListener('submit', (event) => {
 })
 
 view.collectionPage.addEventListener('click', (event) => {
-  const gameListingDiv = event.target.matches('.game-listing')
-    ? event.target
-    : event.target.parentElement
-  if (!gameListingDiv.dataset.id) {
+  let searchPointer = event.target
+  while (!searchPointer.dataset.id) {
+    if (searchPointer === view.collectionPage) {
+      break
+    }
+    searchPointer = searchPointer.parentElement
+  }
+  if (!searchPointer.dataset.id) {
     return
   }
 
-  showGame(gameListingDiv.dataset.id)
+  showGame(searchPointer.dataset.id)
     .then((res) => res.json())
     .then((POJO) => showGameDetailsPage(POJO.game))
     .catch(showError)
