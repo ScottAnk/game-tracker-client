@@ -17,9 +17,11 @@ export const onSignUpSuccess = () => {
 }
 
 export const onSignInSuccess = () => {
-  view.loginPage.classList.add('hidden')
   view.mainContainer.classList.remove('hidden')
+  view.collectionPage.classList.remove('hidden')
+
   view.messageContainer.classList.add('hidden')
+  view.loginPage.classList.add('hidden')
 
   view.credentialsForm.reset()
 }
@@ -27,6 +29,8 @@ export const onSignInSuccess = () => {
 export const showLoginPage = () => {
   view.mainContainer.classList.add('hidden')
   view.loginPage.classList.remove('hidden')
+  hideGameDetailsPage()
+  hideCreateGamePage()
 }
 
 export const onIndexUserCollections = (collections) => {

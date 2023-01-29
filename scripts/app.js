@@ -63,7 +63,6 @@ view.signInButton.addEventListener('click', () => {
 })
 
 view.signOutButton.addEventListener('click', () => {
-  // TODO BUT signing out from any page results in returning to it when signing in
   cache.token = ''
   showLoginPage()
 })
