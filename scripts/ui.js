@@ -1,34 +1,34 @@
 import view from './view.js'
 import cache from './cache.js'
-
+// TODO it may be worth creating a hideall function that hides all the pages, then I can call that at the top of every show function to avoid accidentally showing two pages simultaneously
 export const showError = (error) => {
   view.messageContainer.innerHTML = `
-  <div class="error">${error}</div>
+  <div class="alert alert-danger">${error}</div>
   `
-  view.messageContainer.classList.remove('hidden')
+  view.messageContainer.classList.remove('d-none')
 }
 
 export const onSignUpSuccess = () => {
   view.messageContainer.innerHTML = `
-  <div class="notification">Sign up success! Sign in to begin</div>
+  <div class="alert alert-secondary">Sign up success! Sign in to begin</div>
   `
-  view.messageContainer.classList.remove('hidden')
-  setTimeout(() => view.messageContainer.classList.add('hidden'), 1000 * 60)
+  view.messageContainer.classList.remove('d-none')
+  setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 60)
 }
 
 export const onSignInSuccess = () => {
-  view.mainContainer.classList.remove('hidden')
-  view.collectionPage.classList.remove('hidden')
+  view.mainContainer.classList.remove('d-none')
+  view.collectionPage.classList.remove('d-none')
 
-  view.messageContainer.classList.add('hidden')
-  view.loginPage.classList.add('hidden')
+  view.messageContainer.classList.add('d-none')
+  view.loginPage.classList.add('d-none')
 
   view.credentialsForm.reset()
 }
 
 export const showLoginPage = () => {
-  view.mainContainer.classList.add('hidden')
-  view.loginPage.classList.remove('hidden')
+  view.mainContainer.classList.add('d-none')
+  view.loginPage.classList.remove('d-none')
   hideGameDetailsPage()
   hideCreateGamePage()
 }
@@ -40,12 +40,15 @@ export const onIndexUserCollections = (collections) => {
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
     const div = document.createElement('div')
-    div.classList.add('game-listing')
-    div.dataset.id = game._id
+    div.classList.add('col')
     div.innerHTML = `
-    <h3>${game.title}</h3>
-    <p>Players: ${game.minPlayers} - ${game.maxPlayers}</p>
-    <p>click to see more</p>
+    <div class="card text-center h-100 text-bg-primary" role="button" data-id="${game._id}">
+      <h3 class="card-title">${game.title}</h3>
+      <div class="card-body">
+        <p class="card-text">Players: ${game.minPlayers} - ${game.maxPlayers}</p>
+        <p class="card-text">click to see more</p>
+      </div>
+    </div>
     `
     view.collectionPage.appendChild(div)
   }
@@ -57,20 +60,21 @@ export const onCreateGameSuccess = () => {
 }
 
 export const showCreateGamePage = () => {
-  view.collectionPage.classList.add('hidden')
-  view.createGamePage.classList.remove('hidden')
+  view.collectionPage.classList.add('d-none')
+  view.createGamePage.classList.remove('d-none')
 }
 
 export const hideCreateGamePage = () => {
-  view.createGamePage.classList.add('hidden')
-  view.messageContainer.classList.add('hidden')
-  view.collectionPage.classList.remove('hidden')
+  view.createGamePage.classList.add('d-none')
+  view.messageContainer.classList.add('d-none')
+  view.collectionPage.classList.remove('d-none')
 }
 
 export const showGameDetailsPage = (gameData) => {
-  view.gameDetailsPage.classList.remove('hidden')
-  view.deleteGameButton.classList.remove('hidden')
-  view.collectionPage.classList.add('hidden')
+  // TODO this should hide the new game button
+  view.gameDetailsPage.classList.remove('d-none')
+  view.deleteGameButton.classList.remove('d-none')
+  view.collectionPage.classList.add('d-none')
 
   view.updateGameForm.title.value = gameData.title
   view.updateGameForm.minPlayers.value = gameData.minPlayers
@@ -82,10 +86,10 @@ export const showGameDetailsPage = (gameData) => {
 }
 
 export const hideGameDetailsPage = () => {
-  view.gameDetailsPage.classList.add('hidden')
-  view.deleteGameButton.classList.add('hidden')
-  view.messageContainer.classList.add('hidden')
-  view.collectionPage.classList.remove('hidden')
+  view.gameDetailsPage.classList.add('d-none')
+  view.deleteGameButton.classList.add('d-none')
+  view.messageContainer.classList.add('d-none')
+  view.collectionPage.classList.remove('d-none')
 
   view.updateGameForm.reset()
   view.updateGameForm.dataset.id = ''

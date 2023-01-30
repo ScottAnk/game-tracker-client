@@ -25,23 +25,24 @@ import {
 } from './ui.js'
 import cache from './cache.js'
 
+const devMode = true
+
 view.signUpButton.addEventListener('click', () => {
   const credentials = {
     userName: view.credentialsForm.userName.value,
     password: view.credentialsForm.password.value,
   }
   signUp(credentials)
-    .then((res) => res.json())
     .then((res) => {
-      return new Promise((resolve, reject) => {
-        if (res.status === 201) {
-          resolve(res)
-        } else if (res.error) {
-          reject(res.error)
-        } else {
-          reject('unknown error')
-        }
-      })
+      if (res.status === 201) {
+        return
+      } else if (res.status === 409) {
+        throw new Error('please pick another username')
+      } else if (res.status === 400) {
+        throw new Error('invalid username or password')
+      } else {
+        throw new Error('unspecified error')
+      }
     })
     .then(onSignUpSuccess)
     .catch((error) => showError(error))
@@ -97,14 +98,18 @@ view.createGameForm.addEventListener('submit', (event) => {
 })
 
 view.collectionPage.addEventListener('click', (event) => {
-  const gameListingDiv = event.target.matches('.game-listing')
-    ? event.target
-    : event.target.parentElement
-  if (!gameListingDiv.dataset.id) {
+  let searchPointer = event.target
+  while (!searchPointer.dataset.id) {
+    if (searchPointer === view.collectionPage) {
+      break
+    }
+    searchPointer = searchPointer.parentElement
+  }
+  if (!searchPointer.dataset.id) {
     return
   }
 
-  showGame(gameListingDiv.dataset.id)
+  showGame(searchPointer.dataset.id)
     .then((res) => res.json())
     .then((POJO) => showGameDetailsPage(POJO.game))
     .catch(showError)
@@ -145,3 +150,12 @@ view.deleteGameButton.addEventListener('click', (event) => {
     startDeleteConfirmation()
   }
 })
+
+if (devMode) {
+  // view.credentialsForm.userName.value = 'C'
+  // view.credentialsForm.password.value = 'C'
+  // view.signInButton.click()
+  // setTimeout(() => {
+  //   view.createGameButton.click()
+  // }, 120)
+}
