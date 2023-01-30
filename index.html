@@ -15,11 +15,11 @@
     <script type="module" src="scripts/app.js"></script>
     <title>Game Collector</title>
   </head>
-  <body class="bg-dark">
+  <body class="bg-dark bg-gradient">
     <!-- TODO it would be very nice to make the update and delete pages show as modals -->
     <div class="d-none" id="message-container"></div>
 
-    <div class="container" id="login-page">
+    <div class="container text-center vh-100" id="login-page">
       <h1>Welcome! Sign in to start building a game collection</h1>
       <form id="credentials-form">
         <input name="userName" placeholder="username" />
@@ -31,7 +31,10 @@
 
     <div class="d-none container my-2" id="main-container">
       <div class="row">
-        <div class="col-2 bg-light py-2 vh-100" id="actions">
+        <div
+          class="col-2 rounded-3 py-2 vh-100 bg-primary bg-gradient shadow-lg"
+          id="actions"
+        >
           <button class="btn btn-primary mb-2" id="create-game-button">
             New Game
           </button>
@@ -43,13 +46,13 @@
           </button>
         </div>
 
-        <div class="col ms-5 py-2 rounded-3 bg-light">
+        <div class="col ms-5 py-2 rounded-3 bg-primary bg-gradient shadow-lg">
           <div
             class="row g-3 row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5"
             id="collection-page"
           ></div>
 
-          <div class="d-none bg-light" id="create-game-page">
+          <div class="d-none" id="create-game-page">
             <!-- TODO swap this for the bootstrap equivalent -->
             <i class="fa-solid fa-xmark" role="button"></i>
             <h3>Enter Game Details</h3>
@@ -97,7 +100,7 @@
             </form>
           </div>
 
-          <div class="d-none bg-light" id="game-details-page">
+          <div class="d-none" id="game-details-page">
             <!-- TODO swap this for the bootstrap equivalent -->
             <i class="fa-solid fa-xmark" role="button"></i>
             <h3>Game Details</h3>

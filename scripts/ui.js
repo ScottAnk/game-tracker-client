@@ -42,7 +42,7 @@ export const onIndexUserCollections = (collections) => {
     const div = document.createElement('div')
     div.classList.add('col')
     div.innerHTML = `
-    <div class="card text-center h-100" role="button" data-id="${game._id}">
+    <div class="card text-center h-100 text-bg-primary" role="button" data-id="${game._id}">
       <h3 class="card-title">${game.title}</h3>
       <div class="card-body">
         <p class="card-text">Players: ${game.minPlayers} - ${game.maxPlayers}</p>
