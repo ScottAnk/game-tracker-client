@@ -33,17 +33,16 @@ view.signUpButton.addEventListener('click', () => {
     password: view.credentialsForm.password.value,
   }
   signUp(credentials)
-    .then((res) => res.json())
     .then((res) => {
-      return new Promise((resolve, reject) => {
-        if (res.status === 201) {
-          resolve(res)
-        } else if (res.error) {
-          reject(res.error)
-        } else {
-          reject('unknown error')
-        }
-      })
+      if (res.status === 201) {
+        return
+      } else if (res.status === 409) {
+        throw new Error('please pick another username')
+      } else if (res.status === 400) {
+        throw new Error('invalid username or password')
+      } else {
+        throw new Error('unspecified error')
+      }
     })
     .then(onSignUpSuccess)
     .catch((error) => showError(error))
@@ -153,7 +152,10 @@ view.deleteGameButton.addEventListener('click', (event) => {
 })
 
 if (devMode) {
-  view.credentialsForm.userName.value = 'C'
-  view.credentialsForm.password.value = 'C'
-  view.signInButton.click()
+  // view.credentialsForm.userName.value = 'C'
+  // view.credentialsForm.password.value = 'C'
+  // view.signInButton.click()
+  // setTimeout(() => {
+  //   view.createGameButton.click()
+  // }, 120)
 }

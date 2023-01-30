@@ -3,14 +3,14 @@ import cache from './cache.js'
 // TODO it may be worth creating a hideall function that hides all the pages, then I can call that at the top of every show function to avoid accidentally showing two pages simultaneously
 export const showError = (error) => {
   view.messageContainer.innerHTML = `
-  <div class="error">${error}</div>
+  <div class="alert alert-danger">${error}</div>
   `
   view.messageContainer.classList.remove('d-none')
 }
 
 export const onSignUpSuccess = () => {
   view.messageContainer.innerHTML = `
-  <div class="notification">Sign up success! Sign in to begin</div>
+  <div class="alert alert-secondary">Sign up success! Sign in to begin</div>
   `
   view.messageContainer.classList.remove('d-none')
   setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 60)
