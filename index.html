@@ -15,7 +15,8 @@
     <script type="module" src="scripts/app.js"></script>
     <title>Game Collector</title>
   </head>
-  <body>
+  <body class="bg-dark">
+    <!-- TODO it would be very nice to make the update and delete pages show as modals -->
     <div class="d-none" id="message-container"></div>
 
     <div class="container" id="login-page">
@@ -28,119 +29,121 @@
       <button class="btn btn-secondary" id="sign-up-button">sign up</button>
     </div>
 
-    <div class="d-none container" id="main-container">
+    <div class="d-none container my-2" id="main-container">
       <div class="row">
-        <div class="col-2" id="actions">
-          <button class="btn btn-primary" id="create-game-button">
+        <div class="col-2 bg-light py-2 vh-100" id="actions">
+          <button class="btn btn-primary mb-2" id="create-game-button">
             New Game
           </button>
-          <button class="btn btn-primary d-none" id="delete-game-button">
+          <button class="btn btn-primary mb-2 d-none" id="delete-game-button">
             Delete Game
           </button>
-          <button class="btn btn-secondary" id="sign-out-button">
+          <button class="btn btn-secondary mb-2" id="sign-out-button">
             Sign Out
           </button>
         </div>
 
-        <div
-          class="col row g-3 row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5"
-          id="collection-page"
-        ></div>
+        <div class="col ms-5 py-2 rounded-3 bg-light">
+          <div
+            class="row g-3 row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5"
+            id="collection-page"
+          ></div>
 
-        <div class="d-none col" id="create-game-page">
-          <!-- TODO swap this for the bootstrap equivalent -->
-          <i class="fa-solid fa-xmark" role="button"></i>
-          <h3>Enter Game Details</h3>
-          <form id="create-game-form">
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="title"
-                placeholder="title"
-                id="create-title"
-              />
-              <label for="create-title">Title</label>
-            </div>
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="minPlayers"
-                type="number"
-                placeholder="minimum players"
-                id="create-min-players"
-              />
-              <label for="create-min-players">minimum players</label>
-            </div>
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="maxPlayers"
-                type="number"
-                placeholder="maximum players"
-                id="create-max-players"
-              />
-              <label for="create-max-players">maximum players</label>
-            </div>
-            <div class="form-floating">
-              <textarea
-                class="form-control mb-2"
-                name="description"
-                id="createDescription"
-                placeholder="description"
-                style="height: 8rem"
-              ></textarea>
-              <label for="createDescription">description</label>
-            </div>
-            <button class="btn btn-primary" type="submit">Create Game</button>
-          </form>
-        </div>
+          <div class="d-none bg-light" id="create-game-page">
+            <!-- TODO swap this for the bootstrap equivalent -->
+            <i class="fa-solid fa-xmark" role="button"></i>
+            <h3>Enter Game Details</h3>
+            <form id="create-game-form">
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="title"
+                  placeholder="title"
+                  id="create-title"
+                />
+                <label for="create-title">Title</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="minPlayers"
+                  type="number"
+                  placeholder="minimum players"
+                  id="create-min-players"
+                />
+                <label for="create-min-players">minimum players</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="maxPlayers"
+                  type="number"
+                  placeholder="maximum players"
+                  id="create-max-players"
+                />
+                <label for="create-max-players">maximum players</label>
+              </div>
+              <div class="form-floating">
+                <textarea
+                  class="form-control mb-2"
+                  name="description"
+                  id="createDescription"
+                  placeholder="description"
+                  style="height: 8rem"
+                ></textarea>
+                <label for="createDescription">description</label>
+              </div>
+              <button class="btn btn-primary" type="submit">Create Game</button>
+            </form>
+          </div>
 
-        <div class="d-none col" id="game-details-page">
-          <!-- TODO swap this for the bootstrap equivalent -->
-          <i class="fa-solid fa-xmark" role="button"></i>
-          <h3>Game Details</h3>
-          <form id="update-game-form">
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="title"
-                placeholder="title"
-                id="update-title"
-              />
-              <label for="update-title">Title</label>
-            </div>
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="minPlayers"
-                type="number"
-                placeholder="minimum players"
-                id="update-min-players"
-              />
-              <label for="update-min-players">minimum players</label>
-            </div>
-            <div class="form-floating">
-              <input
-                class="form-control mb-2"
-                name="maxPlayers"
-                type="number"
-                placeholder="maximum players"
-                id="update-max-players"
-              />
-              <label for="update-max-players">maximum players</label>
-            </div>
-            <div class="form-floating">
-              <textarea
-                class="form-control mb-2"
-                name="description"
-                id="updateDescription"
-                placeholder="description"
-                style="height: 8rem"
-              ></textarea>
-              <label for="updateDescription">description</label>
-            </div>
-            <button class="btn btn-primary" type="submit">Update Game</button>
-          </form>
+          <div class="d-none bg-light" id="game-details-page">
+            <!-- TODO swap this for the bootstrap equivalent -->
+            <i class="fa-solid fa-xmark" role="button"></i>
+            <h3>Game Details</h3>
+            <form id="update-game-form">
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="title"
+                  placeholder="title"
+                  id="update-title"
+                />
+                <label for="update-title">Title</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="minPlayers"
+                  type="number"
+                  placeholder="minimum players"
+                  id="update-min-players"
+                />
+                <label for="update-min-players">minimum players</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  class="form-control mb-2"
+                  name="maxPlayers"
+                  type="number"
+                  placeholder="maximum players"
+                  id="update-max-players"
+                />
+                <label for="update-max-players">maximum players</label>
+              </div>
+              <div class="form-floating">
+                <textarea
+                  class="form-control mb-2"
+                  name="description"
+                  id="updateDescription"
+                  placeholder="description"
+                  style="height: 8rem"
+                ></textarea>
+                <label for="updateDescription">description</label>
+              </div>
+              <button class="btn btn-primary" type="submit">Update Game</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
