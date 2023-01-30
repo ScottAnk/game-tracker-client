@@ -6,19 +6,3 @@ $danger: #d64933;
 $white: #f8eee9;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
-
-// $sizes: (
-//   25: 25%,
-//   50: 50%,
-//   75: 75%,
-//   100: 100%,
-// );
-// @each $breakpoint in map-keys($grid-breakpoints) {
-//   @each $size, $length in $sizes {
-//     @include media-breakpoint-up($breakpoint) {
-//       .w-#{$breakpoint}-#{$size} {
-//         width: $length !important;
-//       }
-//     }
-//   }
-// }
