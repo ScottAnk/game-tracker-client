@@ -14,11 +14,9 @@ import {
   onSignUpSuccess,
   onSignInSuccess,
   onIndexUserCollections,
+  showCollectionPage,
   showCreateGamePage,
-  hideCreateGamePage,
-  onCreateGameSuccess,
   showGameDetailsPage,
-  hideGameDetailsPage,
   startDeleteConfirmation,
   clearDeleteConfirmation,
   showLoginPage,
@@ -69,11 +67,11 @@ view.signOutButton.addEventListener('click', () => {
 })
 
 view.closeCreateGameButton.addEventListener('click', () => {
-  hideCreateGamePage()
+  showCollectionPage()
 })
 
 view.closeGameDetailsButton.addEventListener('click', () => {
-  hideGameDetailsPage()
+  showCollectionPage()
 })
 
 view.createGameButton.addEventListener('click', (event) => {
@@ -90,7 +88,12 @@ view.createGameForm.addEventListener('submit', (event) => {
     description: view.createGameForm.description.value,
   }
   createGame(gameDetails)
-    .then(onCreateGameSuccess)
+    .then((res) => {
+      if (res.status >= 400) {
+        throw new Error('could not create game')
+      }
+    })
+    .then(showCollectionPage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
@@ -125,8 +128,15 @@ view.updateGameForm.addEventListener('submit', (event) => {
     description: view.updateGameForm.description.value,
   }
   updateGame(view.updateGameForm.dataset.id, gameDetails)
+    .then((res) => {
+      if (res.status >= 400) {
+        throw new Error('update rejected by server')
+      } else {
+        return res
+      }
+    })
     .then((res) => res.json())
-    .then(hideGameDetailsPage)
+    .then(showCollectionPage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
@@ -135,7 +145,7 @@ view.updateGameForm.addEventListener('submit', (event) => {
 
 const triggerDeletion = () => {
   deleteGame(view.deleteGameButton.dataset.id)
-    .then(hideGameDetailsPage)
+    .then(showCollectionPage)
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))

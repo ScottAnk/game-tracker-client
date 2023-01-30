@@ -27,10 +27,17 @@ export const onSignInSuccess = () => {
 }
 
 export const showLoginPage = () => {
-  view.mainContainer.classList.add('d-none')
+  hideAllPages()
   view.loginPage.classList.remove('d-none')
-  hideGameDetailsPage()
-  hideCreateGamePage()
+}
+
+export const showCollectionPage = () => {
+  hideAllPages()
+  view.collectionPage.classList.remove('d-none')
+}
+
+const hideCollectionPage = () => {
+  view.collectionPage.classList.add('d-none')
 }
 
 export const onIndexUserCollections = (collections) => {
@@ -54,27 +61,20 @@ export const onIndexUserCollections = (collections) => {
   }
 }
 
-export const onCreateGameSuccess = () => {
-  hideCreateGamePage()
-  view.createGameForm.reset()
-}
-
 export const showCreateGamePage = () => {
-  view.collectionPage.classList.add('d-none')
+  hideAllPages()
   view.createGamePage.classList.remove('d-none')
 }
 
 export const hideCreateGamePage = () => {
   view.createGamePage.classList.add('d-none')
-  view.messageContainer.classList.add('d-none')
-  view.collectionPage.classList.remove('d-none')
+  view.createGameForm.reset()
 }
 
 export const showGameDetailsPage = (gameData) => {
-  // TODO this should hide the new game button
+  hideAllPages()
   view.gameDetailsPage.classList.remove('d-none')
   view.deleteGameButton.classList.remove('d-none')
-  view.collectionPage.classList.add('d-none')
 
   view.updateGameForm.title.value = gameData.title
   view.updateGameForm.minPlayers.value = gameData.minPlayers
@@ -88,8 +88,6 @@ export const showGameDetailsPage = (gameData) => {
 export const hideGameDetailsPage = () => {
   view.gameDetailsPage.classList.add('d-none')
   view.deleteGameButton.classList.add('d-none')
-  view.messageContainer.classList.add('d-none')
-  view.collectionPage.classList.remove('d-none')
 
   view.updateGameForm.reset()
   view.updateGameForm.dataset.id = ''
@@ -116,4 +114,12 @@ export const clearDeleteConfirmation = () => {
   clearInterval(cache.deleteIntervalId)
   cache.deleteEnabled = false
   view.deleteGameButton.innerText = 'Delete Game'
+}
+
+const hideAllPages = () => {
+  hideCollectionPage()
+  hideCreateGamePage()
+  hideGameDetailsPage()
+  hideCollectionPage()
+  view.messageContainer.classList.add('d-none')
 }
