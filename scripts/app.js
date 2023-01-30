@@ -135,7 +135,6 @@ view.updateGameForm.addEventListener('submit', (event) => {
         return res
       }
     })
-    .then((res) => res.json())
     .then(showCollectionPage)
     .then(indexUserCollections)
     .then((res) => res.json())
