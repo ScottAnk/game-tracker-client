@@ -6,6 +6,9 @@ export default {
 
   mainContainer: document.querySelector('#main-container'),
   createGameButton: document.querySelector('#create-game-button'),
+  createCollectionButton: document.querySelector('#create-collection-button'),
+  createCollectionForm: document.querySelector('#create-collection-form'),
+  createCollectionCard: document.querySelector('#create-collection-card'),
   signOutButton: document.querySelector('#sign-out-button'),
   collectionPage: document.querySelector('#collection-page'),
 

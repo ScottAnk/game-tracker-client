@@ -1,6 +1,6 @@
 import view from './view.js'
 import cache from './cache.js'
-// TODO it may be worth creating a hideall function that hides all the pages, then I can call that at the top of every show function to avoid accidentally showing two pages simultaneously
+
 export const showError = (error) => {
   view.messageContainer.innerHTML = `
   <div class="alert alert-danger">${error}</div>
@@ -121,5 +121,15 @@ const hideAllPages = () => {
   hideCreateGamePage()
   hideGameDetailsPage()
   hideCollectionPage()
+  hideCreateCollectionForm()
   view.messageContainer.classList.add('d-none')
+}
+
+export const toggleViewCreateCollectionForm = () => {
+  const isHidden = view.createCollectionCard.classList.toggle('d-none')
+}
+
+const hideCreateCollectionForm = () => {
+  view.createCollectionCard.classList.add('d-none')
+  view.createCollectionForm.reset()
 }

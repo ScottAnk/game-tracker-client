@@ -93,3 +93,15 @@ export const indexUserCollections = () => {
     },
   })
 }
+
+export const createCollection = (collectionData) => {
+  return fetch(`${SERVER_URL}/collections`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${cache.token}`,
+    },
+    body: JSON.stringify(collectionData),
+  })
+}

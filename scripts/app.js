@@ -3,6 +3,7 @@ import {
   signUp,
   signIn,
   indexCollectionGames,
+  createCollection,
   indexUserCollections,
   createGame,
   showGame,
@@ -14,6 +15,7 @@ import {
   onSignUpSuccess,
   onSignInSuccess,
   onIndexUserCollections,
+  toggleViewCreateCollectionForm,
   showCollectionPage,
   showCreateGamePage,
   showGameDetailsPage,
@@ -42,7 +44,7 @@ view.signUpButton.addEventListener('click', () => {
         throw new Error('unspecified error')
       }
     })
-    .then(onSignUpSuccess)
+    .then(onSignUpSuccess) //TODO I should probably call showLoginPage() here, but I don't want to break anything right now with unanticipated consequences
     .catch((error) => showError(error))
 })
 
@@ -77,6 +79,16 @@ view.closeGameDetailsButton.addEventListener('click', () => {
 view.createGameButton.addEventListener('click', (event) => {
   event.preventDefault()
   showCreateGamePage()
+})
+
+view.createCollectionButton.addEventListener('click', (event) => {
+  toggleViewCreateCollectionForm()
+})
+
+view.createCollectionForm.addEventListener('submit', (event) => {
+  event.preventDefault()
+  const collectionData = { title: view.createCollectionForm.title.value }
+  createCollection(collectionData).then(showCollectionPage).catch(showError)
 })
 
 view.createGameForm.addEventListener('submit', (event) => {
@@ -161,9 +173,9 @@ view.deleteGameButton.addEventListener('click', (event) => {
 })
 
 if (devMode) {
-  // view.credentialsForm.userName.value = 'C'
-  // view.credentialsForm.password.value = 'C'
-  // view.signInButton.click()
+  view.credentialsForm.userName.value = 'B'
+  view.credentialsForm.password.value = 'B'
+  view.signInButton.click()
   // setTimeout(() => {
   //   view.createGameButton.click()
   // }, 120)
