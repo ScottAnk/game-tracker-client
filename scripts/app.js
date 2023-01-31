@@ -194,7 +194,7 @@ view.updateGameForm.addEventListener('submit', (event) => {
         return res
       }
     })
-    .then(indexCollectionGames)
+    .then(() => indexCollectionGames(cache.activeCollection._id))
     .then((res) => res.json())
     .then((POJO) => onIndexCollectionGames(POJO.games))
     .then(showCollectionPage)
