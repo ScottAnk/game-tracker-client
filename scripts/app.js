@@ -177,19 +177,19 @@ view.updateGameForm.addEventListener('submit', (event) => {
         return res
       }
     })
-    .then(showCollectionPage)
-    .then(indexUserCollections)
+    .then(indexCollectionGames)
     .then((res) => res.json())
-    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .then((POJO) => onIndexCollectionGames(POJO.games))
+    .then(showCollectionPage)
     .catch(showError)
 })
 
 const triggerDeletion = () => {
   deleteGame(view.deleteGameButton.dataset.id)
-    .then(showCollectionPage)
-    .then(indexUserCollections)
+    .then(() => indexCollectionGames(cache.activeCollection._id))
     .then((res) => res.json())
-    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .then((POJO) => onIndexCollectionGames(POJO.games))
+    .then(showCollectionPage)
     .catch(showError)
 }
 view.deleteGameButton.addEventListener('click', (event) => {
