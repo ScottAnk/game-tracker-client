@@ -43,7 +43,7 @@ const hideCollectionPage = () => {
 export const onIndexUserCollections = (collections) => {
   const games = collections[0].games
 
-  view.collectionPage.innerHTML = ''
+  view.collectionGrid.innerHTML = ''
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
     const div = document.createElement('div')
@@ -57,7 +57,7 @@ export const onIndexUserCollections = (collections) => {
       </div>
     </div>
     `
-    view.collectionPage.appendChild(div)
+    view.collectionGrid.appendChild(div)
   }
 }
 

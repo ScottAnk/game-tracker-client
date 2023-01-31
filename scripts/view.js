@@ -10,7 +10,9 @@ export default {
   createCollectionForm: document.querySelector('#create-collection-form'),
   createCollectionCard: document.querySelector('#create-collection-card'),
   signOutButton: document.querySelector('#sign-out-button'),
+
   collectionPage: document.querySelector('#collection-page'),
+  collectionGrid: document.querySelector('#collection-grid'),
 
   createGamePage: document.querySelector('#create-game-page'),
   createGameForm: document.querySelector('#create-game-form'),
