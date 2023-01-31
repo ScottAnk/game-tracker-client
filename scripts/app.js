@@ -15,6 +15,7 @@ import {
   onSignUpSuccess,
   onSignInSuccess,
   onIndexUserCollections,
+  onIndexCollectionGames,
   toggleViewCreateCollectionForm,
   showCollectionPage,
   showCreateGamePage,
@@ -60,12 +61,16 @@ view.signInButton.addEventListener('click', () => {
     .then(indexUserCollections)
     .then((res) => res.json())
     .then((POJO) => onIndexUserCollections(POJO.collections))
+    .then(() => indexCollectionGames(cache.activeCollection._id))
+    .then((res) => res.json())
+    .then((POJO) => onIndexCollectionGames(POJO.games))
     .catch(console.error)
 })
 
 view.signOutButton.addEventListener('click', () => {
   cache.token = ''
   cache.activeCollection = null
+  cache.defaultCollection = null
   showLoginPage()
 })
 
@@ -100,16 +105,22 @@ view.createGameForm.addEventListener('submit', (event) => {
     maxPlayers: view.createGameForm.maxPlayers.value,
     description: view.createGameForm.description.value,
   }
-  createGame(gameDetails)
+
+  const collections = [cache.defaultCollection._id]
+  if (!cache.defaultCollection._id === cache.activeCollection._id) {
+    collections.push(cache.activeCollection._id)
+  }
+
+  createGame(gameDetails, collections)
     .then((res) => {
       if (res.status >= 400) {
         throw new Error('could not create game')
       }
     })
-    .then(showCollectionPage)
-    .then(indexUserCollections)
+    .then(() => indexCollectionGames(cache.activeCollection._id))
     .then((res) => res.json())
-    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .then((POJO) => onIndexCollectionGames(POJO.games))
+    .then(showCollectionPage)
     .catch(showError)
 })
 

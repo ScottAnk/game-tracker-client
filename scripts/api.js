@@ -4,14 +4,16 @@ const SERVER_URL = 'http://127.0.0.1:8000'
 
 // game operations
 export const indexCollectionGames = (collectionId) => {
-  return fetch(
-    `${SERVER_URL}/games/`, // ?collection=${collectionId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${cache.token}`,
-      },
-    }
-  )
+  if (!collectionId) {
+    throw new Error(
+      'Application Error: indexCollectionGames: no collection given'
+    )
+  }
+  return fetch(`${SERVER_URL}/games/?collection=${collectionId}`, {
+    headers: {
+      Authorization: `Bearer ${cache.token}`,
+    },
+  })
 }
 
 export const showGame = (gameId) => {
@@ -22,19 +24,16 @@ export const showGame = (gameId) => {
   })
 }
 
-export const createGame = (gameDetails) => {
-  return fetch(
-    `${SERVER_URL}/games/`, // ?collection=${collectionId}`,
-    {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${cache.token}`,
-      },
-      body: JSON.stringify({ game: gameDetails }),
-    }
-  )
+export const createGame = (gameDetails, collections) => {
+  return fetch(`${SERVER_URL}/games/`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${cache.token}`,
+    },
+    body: JSON.stringify({ game: gameDetails, collections: collections }),
+  })
 }
 
 export const updateGame = (gameId, gameDetails) => {

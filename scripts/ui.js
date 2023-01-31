@@ -50,23 +50,24 @@ export const onIndexUserCollections = (collections) => {
     li.dataset.id = collections[i]._id
     view.collectionList.appendChild(li)
   }
+
+  const defaultIndex = collections.findIndex(
+    (collection) => collection.title === 'My Games'
+  )
+  const defaultCollection = {
+    _id: collections[defaultIndex]._id,
+    title: collections[defaultIndex].title,
+  }
+  cache.defaultCollection = defaultCollection
+
   if (!cache.activeCollection) {
-    const defaultIndex = collections.findIndex(
-      (collection) => collection.title === 'My Games'
-    )
-    const defaultCollection = {
-      _id: collections[defaultIndex]._id,
-      title: collections[defaultIndex].title,
-    }
     cache.activeCollection = defaultCollection
   }
+
   view.activeCollectionTitle.innerText = cache.activeCollection.title
 }
 
-export const onIndexCollectionGames = (collections) => {
-  //this was originally onindexusercollections but copied it because it has the code to populate collection area
-  const games = collections[0].games
-
+export const onIndexCollectionGames = (games) => {
   view.collectionGrid.innerHTML = ''
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
