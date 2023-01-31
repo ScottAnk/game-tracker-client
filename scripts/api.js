@@ -101,6 +101,6 @@ export const createCollection = (collectionData) => {
       'Content-type': 'application/json',
       Authorization: `Bearer ${cache.token}`,
     },
-    body: JSON.stringify(collectionData),
+    body: JSON.stringify({ collection: collectionData }),
   })
 }

@@ -113,7 +113,23 @@ view.createCollectionButton.addEventListener('click', (event) => {
 view.createCollectionForm.addEventListener('submit', (event) => {
   event.preventDefault()
   const collectionData = { title: view.createCollectionForm.title.value }
-  createCollection(collectionData).then(showCollectionPage).catch(showError)
+  createCollection(collectionData)
+    .then((res) => res.json())
+    .then((POJO) => {
+      const collection = POJO.collection
+      cache.activeCollection = { _id: collection._id, title: collection.title }
+    })
+    .then(indexUserCollections)
+    .then((res) => res.json())
+    .then((POJO) => onIndexUserCollections(POJO.collections))
+    .then(() => indexCollectionGames(cache.activeCollection._id))
+    .then((res) => res.json())
+    .then((POJO) => onIndexCollectionGames(POJO.games))
+    .then(updateCollectionHeader)
+    .then(showCollectionPage)
+    .catch(showError)
+
+    .catch(showError)
 })
 
 view.createGameForm.addEventListener('submit', (event) => {
