@@ -46,7 +46,8 @@ view.signUpButton.addEventListener('click', () => {
         throw new Error('unspecified error')
       }
     })
-    .then(onSignUpSuccess) //TODO I should probably call showLoginPage() here, but I don't want to break anything right now with unanticipated consequences
+    .then(showLoginPage)
+    .then(onSignUpSuccess)
     .catch((error) => showError(error))
 })
 

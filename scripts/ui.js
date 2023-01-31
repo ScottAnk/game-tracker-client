@@ -6,6 +6,7 @@ export const showError = (error) => {
   <div class="alert alert-danger">${error}</div>
   `
   view.messageContainer.classList.remove('d-none')
+  setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 30)
 }
 
 export const onSignUpSuccess = () => {
@@ -13,7 +14,6 @@ export const onSignUpSuccess = () => {
   <div class="alert alert-secondary">Sign up success! Sign in to begin</div>
   `
   view.messageContainer.classList.remove('d-none')
-  setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 60)
 }
 
 export const onSignInSuccess = () => {
