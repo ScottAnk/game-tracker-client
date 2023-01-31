@@ -76,6 +76,10 @@ view.signOutButton.addEventListener('click', () => {
 })
 
 view.collectionList.addEventListener('click', (event) => {
+  if (!event.target.dataset.id) {
+    return
+  }
+
   cache.activeCollection = {
     _id: event.target.dataset.id,
     title: event.target.dataset.title,
