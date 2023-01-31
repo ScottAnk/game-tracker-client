@@ -16,6 +16,7 @@ import {
   onSignInSuccess,
   onIndexUserCollections,
   onIndexCollectionGames,
+  updateCollectionHeader,
   toggleViewCreateCollectionForm,
   showCollectionPage,
   showCreateGamePage,
@@ -72,6 +73,19 @@ view.signOutButton.addEventListener('click', () => {
   cache.activeCollection = null
   cache.defaultCollection = null
   showLoginPage()
+})
+
+view.collectionList.addEventListener('click', (event) => {
+  cache.activeCollection = {
+    _id: event.target.dataset.id,
+    title: event.target.dataset.title,
+  }
+  indexCollectionGames(cache.activeCollection._id)
+    .then((res) => res.json())
+    .then((POJO) => onIndexCollectionGames(POJO.games))
+    .then(updateCollectionHeader)
+    .then(showCollectionPage)
+    .catch(showError)
 })
 
 view.closeCreateGameButton.addEventListener('click', () => {

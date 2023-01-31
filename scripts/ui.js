@@ -46,8 +46,10 @@ export const onIndexUserCollections = (collections) => {
   for (let i = 0; i < collections.length; i++) {
     const li = document.createElement('li')
     li.classList.add('text-center')
+    li.setAttribute('role', 'button')
     li.innerText = collections[i].title
     li.dataset.id = collections[i]._id
+    li.dataset.title = collections[i].title
     view.collectionList.appendChild(li)
   }
 
@@ -64,6 +66,10 @@ export const onIndexUserCollections = (collections) => {
     cache.activeCollection = defaultCollection
   }
 
+  updateCollectionHeader()
+}
+
+export const updateCollectionHeader = () => {
   view.activeCollectionTitle.innerText = cache.activeCollection.title
 }
 
