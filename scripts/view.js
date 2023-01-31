@@ -12,6 +12,8 @@ export default {
   signOutButton: document.querySelector('#sign-out-button'),
 
   collectionPage: document.querySelector('#collection-page'),
+  activeCollectionTitle: document.querySelector('#active-collection-title'),
+  collectionList: document.querySelector('#collection-list'),
   collectionGrid: document.querySelector('#collection-grid'),
 
   createGamePage: document.querySelector('#create-game-page'),

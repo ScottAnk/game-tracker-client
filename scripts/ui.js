@@ -41,6 +41,30 @@ const hideCollectionPage = () => {
 }
 
 export const onIndexUserCollections = (collections) => {
+  view.collectionList.innerHTML = ''
+
+  for (let i = 0; i < collections.length; i++) {
+    const li = document.createElement('li')
+    li.classList.add('text-center')
+    li.innerText = collections[i].title
+    li.dataset.id = collections[i]._id
+    view.collectionList.appendChild(li)
+  }
+  if (!cache.activeCollection) {
+    const defaultIndex = collections.findIndex(
+      (collection) => collection.title === 'My Games'
+    )
+    const defaultCollection = {
+      _id: collections[defaultIndex]._id,
+      title: collections[defaultIndex].title,
+    }
+    cache.activeCollection = defaultCollection
+  }
+  view.activeCollectionTitle.innerText = cache.activeCollection.title
+}
+
+export const onIndexCollectionGames = (collections) => {
+  //this was originally onindexusercollections but copied it because it has the code to populate collection area
   const games = collections[0].games
 
   view.collectionGrid.innerHTML = ''

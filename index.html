@@ -96,27 +96,27 @@
         </div>
 
         <div class="col">
-          <div
-            class="card rounded-3 bg-primary bg-gradient shadow-lg h-100"
-          >
+          <div class="card rounded-3 bg-primary bg-gradient shadow-lg h-100">
             <div class="dropdown bg-secondary card-header px-0">
               <div
                 class="dropdown-toggle w-100 text-center"
                 role="button"
                 data-bs-toggle="dropdown"
               >
-                <span class="px-3 display-6">collection1</span>
+                <span class="display-6" id="active-collection-title"
+                  >collection1</span
+                >
               </div>
-              <ul class="dropdown-menu w-100 br-light">
-                <li class="text-center"><span class="px-3">collectoin2</li></span>
-                <li class="text-center"><span class="px-3">collectoin3</li></span>
-              </ul>
+              <ul
+                class="dropdown-menu w-100 br-light"
+                id="collection-list"
+              ></ul>
             </div>
-            <div
-              class="p-3"
-              id="collection-page"
-            >
-              <div class="row g-3 row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5" id="collection-grid"></div>
+            <div class="p-3" id="collection-page">
+              <div
+                class="row g-3 row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5"
+                id="collection-grid"
+              ></div>
             </div>
 
             <div class="d-none px-3" id="create-game-page">
@@ -163,7 +163,9 @@
                   ></textarea>
                   <label for="createDescription">description</label>
                 </div>
-                <button class="btn btn-secondary" type="submit">Create Game</button>
+                <button class="btn btn-secondary" type="submit">
+                  Create Game
+                </button>
               </form>
             </div>
 
@@ -211,7 +213,9 @@
                   ></textarea>
                   <label for="updateDescription">description</label>
                 </div>
-                <button class="btn btn-secondary" type="submit">Update Game</button>
+                <button class="btn btn-secondary" type="submit">
+                  Update Game
+                </button>
               </form>
             </div>
           </div>

@@ -65,6 +65,7 @@ view.signInButton.addEventListener('click', () => {
 
 view.signOutButton.addEventListener('click', () => {
   cache.token = ''
+  cache.activeCollection = null
   showLoginPage()
 })
 
@@ -173,8 +174,8 @@ view.deleteGameButton.addEventListener('click', (event) => {
 })
 
 if (devMode) {
-  view.credentialsForm.userName.value = 'B'
-  view.credentialsForm.password.value = 'B'
+  view.credentialsForm.userName.value = 'C'
+  view.credentialsForm.password.value = 'C'
   view.signInButton.click()
   // setTimeout(() => {
   //   view.createGameButton.click()
