@@ -142,7 +142,7 @@ view.createGameForm.addEventListener('submit', (event) => {
   }
 
   const collections = [cache.defaultCollection._id]
-  if (!cache.defaultCollection._id === cache.activeCollection._id) {
+  if (cache.defaultCollection._id !== cache.activeCollection._id) {
     collections.push(cache.activeCollection._id)
   }
 
