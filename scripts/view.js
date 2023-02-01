@@ -6,8 +6,15 @@ export default {
 
   mainContainer: document.querySelector('#main-container'),
   createGameButton: document.querySelector('#create-game-button'),
+  createCollectionButton: document.querySelector('#create-collection-button'),
+  createCollectionForm: document.querySelector('#create-collection-form'),
+  createCollectionCard: document.querySelector('#create-collection-card'),
   signOutButton: document.querySelector('#sign-out-button'),
+
   collectionPage: document.querySelector('#collection-page'),
+  activeCollectionTitle: document.querySelector('#active-collection-title'),
+  collectionList: document.querySelector('#collection-list'),
+  collectionGrid: document.querySelector('#collection-grid'),
 
   createGamePage: document.querySelector('#create-game-page'),
   createGameForm: document.querySelector('#create-game-form'),

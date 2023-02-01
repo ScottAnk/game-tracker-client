@@ -1,11 +1,12 @@
 import view from './view.js'
 import cache from './cache.js'
-// TODO it may be worth creating a hideall function that hides all the pages, then I can call that at the top of every show function to avoid accidentally showing two pages simultaneously
+
 export const showError = (error) => {
   view.messageContainer.innerHTML = `
   <div class="alert alert-danger">${error}</div>
   `
   view.messageContainer.classList.remove('d-none')
+  setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 30)
 }
 
 export const onSignUpSuccess = () => {
@@ -13,7 +14,6 @@ export const onSignUpSuccess = () => {
   <div class="alert alert-secondary">Sign up success! Sign in to begin</div>
   `
   view.messageContainer.classList.remove('d-none')
-  setTimeout(() => view.messageContainer.classList.add('d-none'), 1000 * 60)
 }
 
 export const onSignInSuccess = () => {
@@ -41,9 +41,40 @@ const hideCollectionPage = () => {
 }
 
 export const onIndexUserCollections = (collections) => {
-  const games = collections[0].games
+  view.collectionList.innerHTML = ''
 
-  view.collectionPage.innerHTML = ''
+  for (let i = 0; i < collections.length; i++) {
+    const li = document.createElement('li')
+    li.classList.add('text-center')
+    li.setAttribute('role', 'button')
+    li.innerText = collections[i].title
+    li.dataset.id = collections[i]._id
+    li.dataset.title = collections[i].title
+    view.collectionList.appendChild(li)
+  }
+
+  const defaultIndex = collections.findIndex(
+    (collection) => collection.title === 'My Games'
+  )
+  const defaultCollection = {
+    _id: collections[defaultIndex]._id,
+    title: collections[defaultIndex].title,
+  }
+  cache.defaultCollection = defaultCollection
+
+  if (!cache.activeCollection) {
+    cache.activeCollection = defaultCollection
+  }
+
+  updateCollectionHeader()
+}
+
+export const updateCollectionHeader = () => {
+  view.activeCollectionTitle.innerText = cache.activeCollection.title
+}
+
+export const onIndexCollectionGames = (games) => {
+  view.collectionGrid.innerHTML = ''
   for (let i = 0; i < games.length; i++) {
     const game = games[i]
     const div = document.createElement('div')
@@ -57,7 +88,7 @@ export const onIndexUserCollections = (collections) => {
       </div>
     </div>
     `
-    view.collectionPage.appendChild(div)
+    view.collectionGrid.appendChild(div)
   }
 }
 
@@ -121,5 +152,15 @@ const hideAllPages = () => {
   hideCreateGamePage()
   hideGameDetailsPage()
   hideCollectionPage()
+  hideCreateCollectionForm()
   view.messageContainer.classList.add('d-none')
+}
+
+export const toggleViewCreateCollectionForm = () => {
+  const isHidden = view.createCollectionCard.classList.toggle('d-none')
+}
+
+const hideCreateCollectionForm = () => {
+  view.createCollectionCard.classList.add('d-none')
+  view.createCollectionForm.reset()
 }
