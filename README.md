@@ -1,50 +1,54 @@
-# game-tracker  
+# Game Tracker
 
-This website allows users to quickly set up a profile and create a digital copy of their boardgame collection. This can be helpful when planning boardgame nights, or as a fun way to show off your collection to friends.
+Game Tracker is a quick way to make a digital copy of your boardgame collection (or whatever kinds of games you like, I won't tell). Accessible anywhere you go, this digital library of games is essential when planning boardgame nights and is an easy way to show off your collection to friends.
 
-# User Stories  
+# Getting Started
 
-## MVP  
+The app is hosted on GitHub Pages [check it out!](https://scottank.github.io/game-tracker-client/)
 
-- As a user I need to be able to sign in  
-- As a user I need to be able to sign out  
-- As a user I need to be able to see my game collection  
-- As a user I need to be able to add games to my collection  
-- As a user I need to be able to remove games from my collection  
-- As a user I need to be able to modify the details of games in my collection  
-- As a user I want a pleasing aesthetic to the collection  
+_sorry, due to hosting issues for the backend server, the app is currently not availabe. This should be resolved shortly. Until then you, can host your own server if you really want to see Game Tracker in action. Here's the repository https://github.com/ScottAnk/game-tracker-server_
 
-## Version 2  
+Grab a username and you're off to the races. If you're feeling lost, check out the interface section for a walkthrough.
 
-- As a user I need a cancel button on create and update screens because I want to be able to back out  
-- As a user I need a confirmation prompt before deleting games because it's too easy to accidentally click one button  
-- As a user I need to be able to create multiple collections for organization  
-- As a user I need to be able to share a read-only link to my collections so I can show my collection to friends  
-- As a user I need to be able to access read-only links without signing in so that my friends don't need an account to see my collection  
+# Technologies
 
-## Version 3  
+Game Tracker is built with the following tools:
 
-- As a user I need to be able to customize the colors of each game  
-- As a user I need to be able to add session notes to each game  
-- As a user I need to be able to filter my game collection    
-- As a user I need to be able to search a list of pre-defined games because I don't want to define all my games myself  
+- HTML
+- CSS (Bootstrap)
+- JavaScript
+- Sass
 
-# Entity Relationships  
+HTML and Bootstrap make up the user interface, with all the interactivity controlled through JavaScript. Sass is used to customize the Bootstrap color theme.
 
-In order to satisfy the requirements of the MVP user stories, the app will require three database models User, Collection, and Game. User stores login information and is the identifier to which collections will be referenced. Collection has an owner field that points to a user and an array of references to Game documents. Game stores the details of the game. Strictly speaking, MVP doesn't require a Collection model, but this is futureproofing with the expectation that multiple collections per user will be implemented. In the MVP, for each User created a Collection will also be created and linked automatically.  
-![MVP-entity-relationship-diagram](/readme-images/MVP-entity-relationship-diagram.png)  
+# Interface
 
+Game Tracker is primarily intended for personal collections, so you are required to make an account before getting started. I don't want your personal info, so accounts are tied to usernames instead of emails.  
+![login screen](./readme-images/V2-login-page.png)
 
-# Layout  
+After logging in you're immediately greeted with a tiled view of all your games. The controls to create new games and collections are accessible in the panel on the left side of the screen. These controls are accessible everywhere in the app.  
+![collection page](./readme-images/V2-collection-page.png)
 
-The MVP will not support any un-authenticated access. When users first visit the site, they will be invited to create an account or sign in to an existing account.  
-![MVP landing page](/readme-images/MVP-landing-page.png)  
+This homepage is the My Games collection which contains all of the games in your library. Games can be organized into sub collections, which are accessible from the dropdown menu at the top of the page.  
+![collection changer](./readme-images/V2-collection-selector.png)
 
-Once signed in, users can see and edit their collection. The majority of the screen is filled with the collection, with some action buttons in the sidebar.  
-![MVP collection View](/readme-images/MVP-collection-view.png)  
+Click the New Game button to open this game creation view. Games are automatically added to the current collection as well as your My Games collection.  
+![game creation](./readme-images/V2-game-creator.png)
 
-The user can click on a game's preview to see details, edit properties, or delete it. In the MVP, the only way out of this screen is to update the game without changing any details. Adding a cancel button to this view is the first change planned for version 2.  
-![MVP update/delete view](/readme-images/MVP-update-delete-view.png)  
+Click any of the game tiles to see the game's description and modify any details on this familiar feeling interface.  
+![game details](./readme-images/V2-game-details.png)
 
-The user can click the "new game" button to create a new game for their collection. After adding details, the create button in this view will create the database entry and return the user to the (updated) collection view.  
-![MVP create view](/readme-images/MVP-create-view.png)
+# Next Steps
+
+Game Tracker is between it's MVP and Version 2 milestones. The user stories below lay out the future plans for Game Tracker, and are organized roughly in order of priority.
+
+## Version 2
+
+- As a user I need to be able to share a read-only link to my collections so I can show my collection to friends
+- As a user I need to be able to access read-only links without signing in so that my friends don't need an account to see my collection
+
+## Version 3
+
+- As a user I need to be able to search a list of pre-defined games because I don't want to define all my games myself
+- As a user I need to be able to add cover pictures to games
+- As a user I need to be able to add session notes to each game
