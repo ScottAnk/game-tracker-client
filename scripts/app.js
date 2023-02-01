@@ -27,7 +27,7 @@ import {
 } from './ui.js'
 import cache from './cache.js'
 
-const devMode = true
+const devMode = false
 
 view.signUpButton.addEventListener('click', () => {
   const credentials = {
