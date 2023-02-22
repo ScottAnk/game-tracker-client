@@ -1,6 +1,6 @@
 import cache from './cache.js'
 
-const SERVER_URL = 'http://127.0.0.1:8000'
+const SERVER_URL = 'https://game-tracker-server.onrender.com'
 
 // game operations
 export const indexCollectionGames = (collectionId) => {
