@@ -4,9 +4,7 @@ Game Tracker is a quick way to make a digital copy of your boardgame collection 
 
 # Getting Started
 
-The app is hosted on GitHub Pages [check it out!](https://scottank.github.io/game-tracker-client/)
-
-_sorry, due to hosting issues for the backend server, the app is currently not availabe. This should be resolved shortly. Until then you, can host your own server if you really want to see Game Tracker in action. Here's the repository https://github.com/ScottAnk/game-tracker-server_
+The app is hosted on Render [check it out!](https://game-tracker-znto.onrender.com/)
 
 Grab a username and you're off to the races. If you're feeling lost, check out the interface section for a walkthrough.
 
